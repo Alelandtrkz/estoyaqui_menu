@@ -1,0 +1,6 @@
+node_modules/
+.preview/
+
+# Los originales se conservan localmente; solo los WebP van al repositorio.
+image-source/*
+!image-source/.gitkeep

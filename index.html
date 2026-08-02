@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111311">
+  <meta name="description" content="Menú digital de Estoy Aquí Bar & Restaurante">
+  <title>Estoy Aquí | Menú digital</title>
+
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/menu-data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="logo-shell">
+        <img
+          src="img/logo-ea.webp"
+          alt="Logotipo de Estoy Aquí"
+          width="84"
+          height="84"
+          decoding="async"
+          data-logo
+        >
+        <span class="logo-fallback" aria-hidden="true">EA</span>
+      </div>
+      <h1 class="brand">Estoy Aquí</h1>
+      <p class="brand-sub">Bar · Restaurante</p>
+      <p class="currency">Precios en USD</p>
+    </header>
+
+    <div class="category-bar">
+      <nav class="categories" id="categories" aria-label="Categorías del menú"></nav>
+    </div>
+
+    <section id="menuPanel" aria-labelledby="categoryTitle">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Menú y precios</p>
+          <h2 class="section-title" id="categoryTitle"></h2>
+        </div>
+        <p class="section-count" id="sectionCount" aria-live="polite"></p>
+      </div>
+      <div class="menu-list" id="menuList"></div>
+    </section>
+
+    <section class="gallery-section" id="gallery" aria-labelledby="galleryTitle">
+      <p class="gallery-label">Galería de la categoría</p>
+
+      <article class="gallery-card">
+        <div class="media" id="media">
+          <img id="heroImage" alt="" decoding="async">
+          <div class="image-placeholder" aria-hidden="true">
+            <div>
+              <span class="placeholder-mark" id="placeholderName"></span>
+              <span class="placeholder-note">Foto próximamente</span>
+            </div>
+          </div>
+          <div class="media-badge" id="mediaBadge">Imagen del producto</div>
+        </div>
+        <div class="gallery-copy">
+          <div class="gallery-top">
+            <h3 class="gallery-name" id="galleryTitle"></h3>
+            <p class="gallery-price" id="galleryPrice"></p>
+          </div>
+          <p class="gallery-desc" id="galleryDesc"></p>
+        </div>
+      </article>
+
+      <div class="gallery-controls">
+        <button class="nav-button" id="prev" type="button" aria-label="Producto anterior">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <p class="counter" id="counter" aria-live="polite"></p>
+        <button class="nav-button" id="next" type="button" aria-label="Producto siguiente">
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div class="thumbs" id="thumbs" aria-label="Miniaturas de productos"></div>
+    </section>
+
+    <footer>Productos sujetos a disponibilidad.</footer>
+  </main>
+</body>
+</html>

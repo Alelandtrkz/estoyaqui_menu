@@ -1,0 +1,13 @@
+{
+  "name": "estoy-aqui-menu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Menú digital estático de Estoy Aquí Bar & Restaurante",
+  "scripts": {
+    "images": "node scripts/optimize-images.mjs",
+    "check": "node --check js/menu-data.js && node --check js/app.js && node --check scripts/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.3"
+  }
+}
