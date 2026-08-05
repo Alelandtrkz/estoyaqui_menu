@@ -173,6 +173,23 @@ img {
   transform: translateY(0) scale(0.98);
 }
 
+.business-hours {
+  max-width: 100%;
+  margin: 11px 0 0;
+  color: var(--bone-soft);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.business-hours time {
+  color: var(--gold);
+  font-weight: 500;
+}
+
 .category-bar {
   position: sticky;
   top: 0;
