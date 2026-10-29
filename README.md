@@ -30,11 +30,13 @@ Abre `index.html` en el navegador. Las fotografías que todavía no existan most
 
 El comando corrige la orientación, elimina metadatos y convierte las fotos a WebP. Conserva la proporción original, la transparencia y el plato completo, con un tamaño máximo de 1200 × 1200 px y sin ampliar fotos pequeñas. La fuente `logo-ea.png` conserva su proporción, recibe esquinas transparentes y genera automáticamente el logotipo WebP, el favicon y el icono para dispositivos Apple.
 
-También reconoce `carne a la plancha.png` y `pollo a la plancha.png`, que actualizan `carne-plancha.webp` y `pollo-plancha.webp` sin cambiar las referencias del menú ni del carrito.
+También reconoce `carne a la plancha.png`, `pollo a la plancha.png` y `pollo al grill.png`, que actualizan `carne-plancha.webp`, `pollo-plancha.webp` y `pollo-grill.webp` sin cambiar las referencias del menú ni del carrito.
 
 Para las tarjetas de comida, usa fotos cenitales (desde arriba), con el plato centrado y margen alrededor. Un PNG con fondo transparente permite que el plato destaque sobre la tarjeta. Las fotos actuales son provisionales: el diseño no cambia el ángulo de la fotografía. Las bebidas usan un recorte circular que llena el marco, con borde claro y sombra, sobresaliendo de la tarjeta igual que los platos.
 
 Las fotos se conservan completas para el detalle. En las tarjetas de bebidas puedes ajustar el centro del recorte con el campo opcional `imagePosition` de cada producto, por ejemplo `"25% 50%"` para favorecer el lado izquierdo de la fotografía.
+
+El campo opcional `imageZoom` amplía únicamente la foto en la tarjeta, manteniendo el marco circular. Por ejemplo, la Salchipapa usa `1.14` para ocupar un espacio visual similar al de las papas fritas, conservando el original completo en el detalle.
 
 Si existe el mismo nombre normalizado en ambas carpetas, se usa el original de `img-source/`.
 

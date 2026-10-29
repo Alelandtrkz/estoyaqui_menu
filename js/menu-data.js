@@ -71,7 +71,8 @@ window.MENU_DATA = [
         price: "3,00",
         description: "Papas fritas · salchicha",
         tag: "Nuevo",
-        image: "salchipapa.webp"
+        image: "salchipapa.webp",
+        imageZoom: 1.14
       }
     ]
   },

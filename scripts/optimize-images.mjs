@@ -14,7 +14,8 @@ const menuDataFile = path.join(projectRoot, "js", "menu-data.js");
 const supportedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 const imageAliases = new Map([
   ["carne-a-la-plancha", "carne-plancha"],
-  ["pollo-a-la-plancha", "pollo-plancha"]
+  ["pollo-a-la-plancha", "pollo-plancha"],
+  ["pollo-al-grill", "pollo-grill"]
 ]);
 function slugify(value) {
   return value

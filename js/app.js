@@ -160,6 +160,10 @@
     const visual = document.createElement("div");
     visual.className = className;
     if (item.imagePosition) visual.style.setProperty("--image-position", item.imagePosition);
+    if (item.imageZoom) {
+      visual.classList.add("has-image-zoom");
+      visual.style.setProperty("--image-zoom", item.imageZoom);
+    }
     const image = document.createElement("img");
     image.alt = item.name;
     image.loading = className === "detail-visual" ? "eager" : "lazy";
@@ -175,7 +179,7 @@
       image.hidden = true;
       image.removeAttribute("src");
     }, { once: true });
-    image.src = `img/${encodeURIComponent(item.image)}?v=20261028-photos`;
+    image.src = `img/${encodeURIComponent(item.image)}?v=20261028-photos-v2`;
     visual.append(image, placeholder);
     return visual;
   }
