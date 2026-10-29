@@ -36,21 +36,23 @@ window.MENU_DATA = [
       {
         name: "Tacos de pollo",
         price: "6,00",
-        description: "Pollo · tortillas · salsa",
+        description: "Sofrito de pollo desmenuzado · salsa ahumada · tortillas",
         image: "tacos.webp"
       },
       {
         name: "Napolitana",
-        price: "7,60",
-        description: "",
+        price: null,
+        comingSoon: true,
+        description: "Milanesa de carne a doble cocción · salsa napolitana · papas fritas · ensalada",
         tag: "Nuevo",
         image: "napolitana.webp"
       },
       {
-        name: "Pho Bo",
-        price: "8,15",
-        description: "",
-        tag: "Nuevo",
+        name: "Phở Bò",
+        price: null,
+        comingSoon: true,
+        description: "Fideos de arroz · carne · vegetales",
+        tag: "Por reserva",
         image: "pho-bo.webp"
       }
     ]

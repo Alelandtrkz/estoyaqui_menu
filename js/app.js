@@ -21,6 +21,9 @@
   let swipeStart = null;
   let statusTimeout;
 
+  const isOrderable = item => Boolean(item && !item.comingSoon && typeof item.price === "string");
+  const displayPrice = item => isOrderable(item) ? `$${item.price}` : "Muy pronto";
+
   function priceInCents(item) {
     const [whole, fraction = ""] = item.price.replace(",", ".").split(".");
     return Number(whole) * 100 + Number(fraction.padEnd(2, "0"));
@@ -41,7 +44,7 @@
   }
 
   function changeQuantity(id, change) {
-    if (!products.has(id)) return;
+    if (!isOrderable(products.get(id))) return;
     const quantity = (cart.get(id) || 0) + change;
     if (quantity > 99) {
       announce("Puedes agregar hasta 99 unidades de cada producto.");
@@ -54,6 +57,7 @@
   }
 
   function addToCart(item) {
+    if (!isOrderable(item)) return;
     if ((cart.get(item.image) || 0) >= 99) {
       announce("Puedes agregar hasta 99 unidades de cada producto.");
       return;
@@ -191,7 +195,16 @@
     replacement.id = "detailVisual";
     visual.replaceWith(replacement);
     document.getElementById("detailName").textContent = item.name;
-    document.getElementById("detailPrice").textContent = `$${item.price}`;
+    const orderable = isOrderable(item);
+    const price = document.getElementById("detailPrice");
+    price.textContent = displayPrice(item);
+    price.classList.toggle("is-coming-soon", !orderable);
+    document.querySelector(".detail-price-label").textContent = orderable ? "Precio" : "Disponibilidad";
+    const add = document.getElementById("detailAdd");
+    const addWasFocused = document.activeElement === add;
+    add.disabled = !orderable;
+    add.hidden = !orderable;
+    if (addWasFocused && !orderable) document.getElementById("closeDetail").focus({ preventScroll: true });
     document.getElementById("detailDesc").textContent = item.description;
     document.getElementById("detailDesc").hidden = !item.description;
     document.getElementById("detailCategory").textContent = section.category;
@@ -246,12 +259,15 @@
     bottom.className = "item-bottom";
     const price = document.createElement("span");
     price.className = "item-price";
-    price.textContent = `$${item.price}`;
+    price.textContent = displayPrice(item);
+    price.classList.toggle("is-coming-soon", !isOrderable(item));
     const add = document.createElement("button");
     add.type = "button";
     add.className = "item-add";
     add.textContent = "+";
     add.setAttribute("aria-label", `Agregar ${item.name} al carrito`);
+    add.disabled = !isOrderable(item);
+    add.hidden = !isOrderable(item);
     add.addEventListener("click", () => addToCart(item));
     bottom.append(price, add);
     card.append(name, description, bottom);
@@ -408,10 +424,11 @@
       for (const entry of saved) {
         if (!Array.isArray(entry) || entry.length !== 2) continue;
         const [id, quantity] = entry;
-        if (products.has(id) && Number.isSafeInteger(quantity) && quantity > 0 && quantity <= 99) cart.set(id, quantity);
+        if (isOrderable(products.get(id)) && Number.isSafeInteger(quantity) && quantity > 0 && quantity <= 99) cart.set(id, quantity);
       }
     }
   } catch { /* Ignorar pedidos guardados inválidos o almacenamiento bloqueado. */ }
   renderCategory();
   renderCart();
+  saveCart();
 })();

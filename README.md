@@ -121,6 +121,8 @@ Las fotografías reemplazadas pueden conservarse en `img-source/archive/`; el co
 
 ## Editar el menú
 
+Para un platillo cuyo precio todavía no está definido, usa `comingSoon: true` y `price: null`. La tarjeta y el detalle mostrarán **Muy pronto**, sin botón para agregarlo al carrito. Los pedidos guardados se limpian al cargar para excluir esos productos. Cuando esté disponible, quita `comingSoon` y establece el precio como texto, por ejemplo `"7,60"`.
+
 Deslizar a la izquierda o derecha sobre el contenido del menú cambia a la siguiente o anterior categoría. Un toque en una tarjeta sigue abriendo el detalle, donde los mismos gestos recorren únicamente los platillos de esa categoría. El desplazamiento vertical y el desplazamiento horizontal de las etiquetas siguen disponibles.
 
 El botón **+** de cada tarjeta agrega el producto al carrito. Tocar cualquier otra parte de la tarjeta abre la fotografía y los detalles, con un botón compacto para agregar al carrito junto al precio. Dentro del detalle puedes deslizar a izquierda o derecha, usar las flechas o el teclado para recorrer los productos de la misma categoría. La bolsa junto a las categorías muestra la cantidad total de unidades y permite cambiar cantidades, quitar productos y abrir WhatsApp con el pedido completo (cantidades, precios, subtotales y total). El cliente confirma el envío del mensaje en WhatsApp. El pedido se conserva en el mismo navegador al recargar la página, cuando el almacenamiento local está disponible.

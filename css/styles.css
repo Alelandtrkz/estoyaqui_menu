@@ -63,6 +63,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--wine-light); ou
 .item-desc { margin: 9px 0 20px; color: var(--muted); font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; }
 .item-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; }
 .item-price { color: var(--ink); font-size: 23px; font-weight: 600; letter-spacing: -.04em; white-space: nowrap; }
+.item-price.is-coming-soon { color: var(--wine); font-size: 17px; font-weight: 500; letter-spacing: 0; white-space: normal; }
 .item-add { position: relative; z-index: 2; display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; padding: 0 0 2px; border: 0; border-radius: 13px; background: var(--wine); color: #fff; font-size: 26px; line-height: 1; cursor: pointer; transition: background .2s ease; }
 .item-add:hover { background: var(--wine-light); }
 footer { margin-top: 42px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; text-align: center; }
@@ -88,6 +89,7 @@ body:has(dialog[open]) { overflow: hidden; }
 .detail-footer { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; gap: 16px; padding: 18px 28px 24px; }
 .detail-price-label { margin: 0 0 3px; color: var(--muted); font-size: 10px; }
 .detail-price { margin: 0; font-size: 23px; font-weight: 600; line-height: 1.1; letter-spacing: -.035em; }
+.detail-price.is-coming-soon { color: var(--wine); font-size: 22px; font-weight: 500; letter-spacing: 0; }
 .detail-add { display: inline-flex; align-items: center; justify-content: center; gap: 12px; width: auto; min-height: 40px; padding: 6px 7px 6px 15px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 400; cursor: pointer; transition: background .2s ease; }
 .detail-add span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--ink); font-size: 20px; line-height: 1; }
 .detail-add:hover { background: var(--wine); }
