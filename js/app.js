@@ -6,6 +6,7 @@
   const menuList = document.getElementById("menuList");
   const categoryTitle = document.getElementById("categoryTitle");
   const sectionCount = document.getElementById("sectionCount");
+  const menuPanel = document.getElementById("menuPanel");
   const dialog = document.getElementById("productDialog");
   const cartDialog = document.getElementById("cartDialog");
   const cartItems = document.getElementById("cartItems");
@@ -169,7 +170,7 @@
       image.hidden = true;
       image.removeAttribute("src");
     }, { once: true });
-    image.src = `img/${encodeURIComponent(item.image)}`;
+    image.src = `img/${encodeURIComponent(item.image)}?v=20261028-photos`;
     visual.append(image, placeholder);
     return visual;
   }
@@ -263,7 +264,7 @@
     menuList.replaceChildren(...section.items.map(createMenuItem));
   }
 
-  function selectCategory(index, { focus = false } = {}) {
+  function selectCategory(index, { focus = false, direction = 0 } = {}) {
     categoryIndex = index;
     [...categories.children].forEach((button, buttonIndex) => button.setAttribute("aria-current", String(buttonIndex === index)));
     const button = categories.children[index];
@@ -274,7 +275,65 @@
     });
     if (focus) button.focus({ preventScroll: true });
     renderCategory();
+    if (direction) {
+      // Al salir de una sección larga, mostrar el inicio de la nueva bajo las etiquetas.
+      const top = Math.max(0, menuPanel.getBoundingClientRect().top + window.scrollY - document.querySelector(".category-bar").offsetHeight);
+      if (window.scrollY > top) window.scrollTo({ top, behavior: "instant" });
+      if (!reducedMotion.matches) {
+        menuList.getAnimations().forEach(animation => animation.cancel());
+        menuList.animate([
+          { opacity: .4, transform: `translateX(${direction * 20}px)` },
+          { opacity: 1, transform: "translateX(0)" }
+        ], { duration: 200, easing: "ease-out" });
+      }
+    }
   }
+
+  const page = document.querySelector(".page");
+  let sectionSwipe = null;
+  let suppressedClick = null;
+  page.addEventListener("pointerdown", event => {
+    if (!event.isPrimary) {
+      sectionSwipe = null;
+      return;
+    }
+    suppressedClick = null;
+    if (event.button !== 0 || dialog.open || cartDialog.open) return;
+    // Las etiquetas mantienen su desplazamiento horizontal nativo; un toque en + sigue agregando.
+    if (event.target.closest(".category-bar, a, input, textarea, select, button:not(.item-open):not(.item-add)")) return;
+    sectionSwipe = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  });
+  page.addEventListener("pointermove", event => {
+    if (!sectionSwipe || sectionSwipe.id !== event.pointerId) return;
+    const dx = event.clientX - sectionSwipe.x;
+    const dy = event.clientY - sectionSwipe.y;
+    if (Math.hypot(dx, dy) > 12) {
+      // Capturar solo al arrastrar: un toque normal sigue abriendo la tarjeta.
+      page.setPointerCapture(event.pointerId);
+    }
+  });
+  page.addEventListener("pointerup", event => {
+    if (!sectionSwipe || sectionSwipe.id !== event.pointerId) return;
+    const dx = event.clientX - sectionSwipe.x;
+    const dy = event.clientY - sectionSwipe.y;
+    sectionSwipe = null;
+    if (Math.abs(dx) < 60 || Math.abs(dx) <= Math.abs(dy) * 1.3 || dialog.open || cartDialog.open) return;
+    // Consumir el clic que puede seguir al gesto para no abrir ni agregar el platillo.
+    suppressedClick = event.pointerId;
+    const step = dx < 0 ? 1 : -1;
+    selectCategory((categoryIndex + step + menu.length) % menu.length, { direction: step });
+  });
+  page.addEventListener("pointercancel", () => { sectionSwipe = null; });
+  page.addEventListener("lostpointercapture", event => {
+    if (event.target === page) sectionSwipe = null;
+  });
+  page.addEventListener("click", event => {
+    if (suppressedClick === null || event.detail === 0) return;
+    if (event.pointerId !== undefined && event.pointerId !== suppressedClick) return;
+    suppressedClick = null;
+    event.preventDefault();
+    event.stopPropagation();
+  }, true);
 
   menu.forEach((section, index) => {
     const button = document.createElement("button");

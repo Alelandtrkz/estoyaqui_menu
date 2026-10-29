@@ -12,6 +12,10 @@ const legacySourceDirectory = path.join(projectRoot, "image-source");
 const outputDirectory = path.join(projectRoot, "img");
 const menuDataFile = path.join(projectRoot, "js", "menu-data.js");
 const supportedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
+const imageAliases = new Map([
+  ["carne-a-la-plancha", "carne-plancha"],
+  ["pollo-a-la-plancha", "pollo-plancha"]
+]);
 function slugify(value) {
   return value
     .normalize("NFD")
@@ -58,7 +62,8 @@ async function collectSourceImages(directory) {
       );
     }
 
-    const normalizedName = slugify(path.basename(entry.name, extension));
+    const sourceName = slugify(path.basename(entry.name, extension));
+    const normalizedName = imageAliases.get(sourceName) ?? sourceName;
     if (!normalizedName) {
       throw new Error(`No se pudo crear un nombre válido para ${entry.name}.`);
     }

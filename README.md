@@ -30,6 +30,8 @@ Abre `index.html` en el navegador. Las fotografías que todavía no existan most
 
 El comando corrige la orientación, elimina metadatos y convierte las fotos a WebP. Conserva la proporción original, la transparencia y el plato completo, con un tamaño máximo de 1200 × 1200 px y sin ampliar fotos pequeñas. La fuente `logo-ea.png` conserva su proporción, recibe esquinas transparentes y genera automáticamente el logotipo WebP, el favicon y el icono para dispositivos Apple.
 
+También reconoce `carne a la plancha.png` y `pollo a la plancha.png`, que actualizan `carne-plancha.webp` y `pollo-plancha.webp` sin cambiar las referencias del menú ni del carrito.
+
 Para las tarjetas de comida, usa fotos cenitales (desde arriba), con el plato centrado y margen alrededor. Un PNG con fondo transparente permite que el plato destaque sobre la tarjeta. Las fotos actuales son provisionales: el diseño no cambia el ángulo de la fotografía. Las bebidas conservan un marco de esquinas redondeadas.
 
 Si existe el mismo nombre normalizado en ambas carpetas, se usa el original de `img-source/`.
@@ -115,6 +117,8 @@ Las fotografías reemplazadas pueden conservarse en `img-source/archive/`; el co
 - `jarra-sprite.webp`
 
 ## Editar el menú
+
+Deslizar a la izquierda o derecha sobre el contenido del menú cambia a la siguiente o anterior categoría. Un toque en una tarjeta sigue abriendo el detalle, donde los mismos gestos recorren únicamente los platillos de esa categoría. El desplazamiento vertical y el desplazamiento horizontal de las etiquetas siguen disponibles.
 
 El botón **+** de cada tarjeta agrega el producto al carrito. Tocar cualquier otra parte de la tarjeta abre la fotografía y los detalles, con un botón compacto para agregar al carrito junto al precio. Dentro del detalle puedes deslizar a izquierda o derecha, usar las flechas o el teclado para recorrer los productos de la misma categoría. La bolsa junto a las categorías muestra la cantidad total de unidades y permite cambiar cantidades, quitar productos y abrir WhatsApp con el pedido completo (cantidades, precios, subtotales y total). El cliente confirma el envío del mensaje en WhatsApp. El pedido se conserva en el mismo navegador al recargar la página, cuando el almacenamiento local está disponible.
 
