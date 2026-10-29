@@ -7,59 +7,11 @@ import sharp from "sharp";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDirectory, "..");
-const sourceDirectory = path.join(projectRoot, "image-source");
+const sourceDirectory = path.join(projectRoot, "img-source");
+const legacySourceDirectory = path.join(projectRoot, "image-source");
 const outputDirectory = path.join(projectRoot, "img");
 const menuDataFile = path.join(projectRoot, "js", "menu-data.js");
 const supportedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-const centeredCropImages = new Set([
-  "agua.webp",
-  "buchanans.webp",
-  "capuccino.webp",
-  "club-verde.webp",
-  "coca-cherry.webp",
-  "coca-lata.webp",
-  "coca-personal.webp",
-  "corona.webp",
-  "cuba-libre.webp",
-  "gatorade.webp",
-  "guitig.webp",
-  "heineken.webp",
-  "jack-honey-cola.webp",
-  "jack-coke.webp",
-  "jarra-coca-cola.webp",
-  "jarra-limon.webp",
-  "jarra-naranja.webp",
-  "jarra-sprite.webp",
-  "jagerbomb.webp",
-  "jw-red-cola.webp",
-  "jw-red-rocas.webp",
-  "latte-doble.webp",
-  "michelada-corona.webp",
-  "michelada-heineken.webp",
-  "pilsener-botella.webp",
-  "pilsener-lata.webp",
-  "pollo-plancha.webp",
-  "power-mini.webp",
-  "ramen.webp",
-  "red-bull.webp",
-  "shot-azul.webp",
-  "shot-jack-daniels.webp",
-  "shot-jack-honey.webp",
-  "shot-jager.webp",
-  "shot-jw-red.webp",
-  "shot-passport.webp",
-  "shot-rojo.webp",
-  "shot-tequila.webp",
-  "sunrise-sin-alcohol.webp",
-  "tacos-pollo.webp",
-  "tequila-sunrise.webp",
-  "whisky-cola.webp"
-]);
-const customCropPositions = new Map([
-  ["blue-margarita.webp", "south"],
-  ["carne-plancha.webp", "north"]
-]);
-
 function slugify(value) {
   return value
     .normalize("NFD")
@@ -87,8 +39,8 @@ async function getExpectedImages() {
   );
 }
 
-async function collectSourceImages() {
-  const entries = await readdir(sourceDirectory, { withFileTypes: true });
+async function collectSourceImages(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
   const images = [];
   const outputNames = new Map();
 
@@ -96,7 +48,7 @@ async function collectSourceImages() {
     if (entry.name === ".gitkeep") continue;
     if (entry.isDirectory() && entry.name === "archive") continue;
     if (!entry.isFile()) {
-      throw new Error(`Solo se permiten archivos dentro de image-source: ${entry.name}`);
+      throw new Error(`Solo se permiten archivos dentro de ${path.basename(directory)}: ${entry.name}`);
     }
 
     const extension = path.extname(entry.name).toLowerCase();
@@ -120,7 +72,7 @@ async function collectSourceImages() {
 
     outputNames.set(outputName, entry.name);
     images.push({
-      inputPath: path.join(sourceDirectory, entry.name),
+      inputPath: path.join(directory, entry.name),
       originalName: entry.name,
       outputName,
       outputPath: path.join(outputDirectory, outputName),
@@ -173,11 +125,9 @@ async function optimizeImage(image) {
       .rotate()
       .resize({
         width: 1200,
-        height: 900,
-        fit: "cover",
-        position:
-          customCropPositions.get(image.outputName) ??
-          (centeredCropImages.has(image.outputName) ? "centre" : "attention")
+        height: 1200,
+        fit: "inside",
+        withoutEnlargement: true
       })
       .webp({ quality: 80, effort: 4 })
       .toFile(image.outputPath);
@@ -188,15 +138,21 @@ async function optimizeImage(image) {
 
 async function main() {
   await mkdir(sourceDirectory, { recursive: true });
+  await mkdir(legacySourceDirectory, { recursive: true });
   await mkdir(outputDirectory, { recursive: true });
 
-  const [expectedImages, sourceImages] = await Promise.all([
+  const [expectedImages, legacyImages, newImages] = await Promise.all([
     getExpectedImages(),
-    collectSourceImages()
+    collectSourceImages(legacySourceDirectory),
+    collectSourceImages(sourceDirectory)
   ]);
+  // Los originales nuevos tienen prioridad sobre los de la carpeta anterior.
+  const sourceImages = [...new Map(
+    [...legacyImages, ...newImages].map((image) => [image.outputName, image])
+  ).values()];
 
   if (sourceImages.length === 0) {
-    console.log("No hay imágenes para convertir en image-source.");
+    console.log("No hay imágenes para convertir en img-source ni image-source.");
   } else {
     for (const image of sourceImages) {
       await optimizeImage(image);

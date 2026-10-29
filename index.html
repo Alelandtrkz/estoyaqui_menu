@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111311">
+  <meta name="theme-color" content="#faf9f6">
   <meta name="description" content="Menú digital de Estoy Aquí Bar & Restaurante">
   <title>Estoy Aquí | Menú digital</title>
 
@@ -33,19 +33,26 @@
       </div>
       <h1 class="brand">Estoy Aquí</h1>
       <p class="brand-sub">Bar · Restaurante</p>
-      <a
+      <button
         class="whatsapp-cta"
-        href="https://wa.me/593963267781?text=Hola%2C%20quiero%20hacer%20un%20pedido%20en%20Estoy%20Aqu%C3%AD."
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Haz tu pedido por WhatsApp a Estoy Aquí"
-      >Haz tu pedido por WhatsApp</a>
+        id="openOrder"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="cartDialog"
+      >Haz tu pedido por WhatsApp</button>
       <p class="business-hours">
         Horario: <time datetime="17:00">5:00 p. m.</time> a <time datetime="01:00">1:00 a. m.</time>
       </p>
     </header>
 
     <div class="category-bar">
+      <div class="category-top">
+        <p class="category-label">Elige tu categoría</p>
+        <button class="cart-toggle" id="cartToggle" type="button" aria-label="Ver carrito, 0 productos" aria-haspopup="dialog" aria-controls="cartDialog">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 10h18l2 18H5l2-18Z"/><path d="M11 13V8a5 5 0 0 1 10 0v5" stroke-linecap="round"/></svg>
+          <span class="cart-badge" id="cartBadge" hidden>0</span>
+        </button>
+      </div>
       <nav class="categories" id="categories" aria-label="Categorías del menú"></nav>
     </div>
 
@@ -60,43 +67,41 @@
       <div class="menu-list" id="menuList"></div>
     </section>
 
-    <section class="gallery-section" id="gallery" aria-labelledby="galleryTitle">
-      <p class="gallery-label">Galería de la categoría</p>
-
-      <article class="gallery-card">
-        <div class="media" id="media">
-          <img id="heroImage" alt="" decoding="async">
-          <div class="image-placeholder" aria-hidden="true">
-            <div>
-              <span class="placeholder-mark" id="placeholderName"></span>
-              <span class="placeholder-note">Foto próximamente</span>
-            </div>
-          </div>
-          <div class="media-badge" id="mediaBadge">Imagen del producto</div>
-        </div>
-        <div class="gallery-copy">
-          <div class="gallery-top">
-            <h3 class="gallery-name" id="galleryTitle"></h3>
-            <p class="gallery-price" id="galleryPrice"></p>
-          </div>
-          <p class="gallery-desc" id="galleryDesc"></p>
-        </div>
-      </article>
-
-      <div class="gallery-controls">
-        <button class="nav-button" id="prev" type="button" aria-label="Producto anterior">
-          <span aria-hidden="true">‹</span>
-        </button>
-        <p class="counter" id="counter" aria-live="polite"></p>
-        <button class="nav-button" id="next" type="button" aria-label="Producto siguiente">
-          <span aria-hidden="true">›</span>
-        </button>
-      </div>
-
-      <div class="thumbs" id="thumbs" aria-label="Miniaturas de productos"></div>
-    </section>
-
     <footer>Productos sujetos a disponibilidad.</footer>
   </main>
+
+  <dialog class="product-dialog" id="productDialog" aria-labelledby="detailName" aria-describedby="detailDesc">
+    <button class="dialog-close" id="closeDetail" type="button" aria-label="Cerrar detalle">×</button>
+    <div class="detail-visual" id="detailVisual"></div>
+    <div class="detail-copy">
+      <span class="item-tag" id="detailTag" hidden></span>
+      <h2 id="detailName"></h2>
+      <p class="detail-price" id="detailPrice"></p>
+      <p class="detail-desc" id="detailDesc"></p>
+      <button class="detail-order" id="detailAdd" type="button">Agregar al carrito <span aria-hidden="true">+</span></button>
+    </div>
+  </dialog>
+
+  <dialog class="cart-dialog" id="cartDialog" aria-labelledby="cartTitle">
+    <div class="cart-heading">
+      <div><p class="section-kicker">Estoy Aquí</p><h2 id="cartTitle">Tu pedido</h2></div>
+      <button class="cart-close" id="closeCart" type="button" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div class="cart-content">
+      <div class="cart-empty" id="cartEmpty">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M7 10h18l2 18H5l2-18Z"/><path d="M11 13V8a5 5 0 0 1 10 0v5"/></svg>
+        <h3>Tu carrito está vacío</h3>
+        <p>Elige lo que se te antoje y toca el botón + para agregarlo.</p>
+        <button class="browse-menu" id="browseMenu" type="button">Explorar el menú</button>
+      </div>
+      <ul class="cart-items" id="cartItems" aria-label="Productos de tu pedido"></ul>
+    </div>
+    <div class="cart-summary" id="cartSummary" hidden>
+      <p class="cart-total"><span>Total</span><strong id="cartTotal">$0,00</strong></p>
+      <a class="detail-order" id="cartOrder" target="_blank" rel="noopener noreferrer">Enviar pedido por WhatsApp <span aria-hidden="true">↗</span></a>
+      <p class="cart-hint">Confirma tu pedido con nosotros en WhatsApp.</p>
+    </div>
+  </dialog>
+  <p class="cart-status" id="cartStatus" role="status" aria-live="polite" aria-atomic="true"></p>
 </body>
 </html>

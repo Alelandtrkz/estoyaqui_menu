@@ -6,7 +6,7 @@ window.MENU_DATA = [
         name: "Carne al grill",
         price: "6,50",
         description: "Filete de punta cadera 400 g · papas fritas 400 g · salsas de la casa · ensalada",
-        image: "carne-grill.webp"
+        image: "carne-al-grill.webp"
       },
       {
         name: "Pollo al grill",
@@ -37,7 +37,21 @@ window.MENU_DATA = [
         name: "Tacos de pollo",
         price: "6,00",
         description: "Pollo · tortillas · salsa",
-        image: "tacos-pollo.webp"
+        image: "tacos.webp"
+      },
+      {
+        name: "Napolitana",
+        price: "7,60",
+        description: "",
+        tag: "Nuevo",
+        image: "napolitana.webp"
+      },
+      {
+        name: "Pho Bo",
+        price: "8,15",
+        description: "",
+        tag: "Nuevo",
+        image: "pho-bo.webp"
       }
     ]
   },

@@ -4,3 +4,5 @@ node_modules/
 # Los originales se conservan localmente; solo los WebP van al repositorio.
 image-source/*
 !image-source/.gitkeep
+img-source/*
+!img-source/.gitkeep
