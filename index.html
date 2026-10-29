@@ -13,9 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261028-detail">
   <script src="js/menu-data.js" defer></script>
-  <script src="js/app.js" defer></script>
+  <script src="js/app.js?v=20261028-detail" defer></script>
 </head>
 <body>
   <main class="page">
@@ -71,14 +71,26 @@
   </main>
 
   <dialog class="product-dialog" id="productDialog" aria-labelledby="detailName" aria-describedby="detailDesc">
-    <button class="dialog-close" id="closeDetail" type="button" aria-label="Cerrar detalle">×</button>
-    <div class="detail-visual" id="detailVisual"></div>
-    <div class="detail-copy">
-      <span class="item-tag" id="detailTag" hidden></span>
-      <h2 id="detailName"></h2>
-      <p class="detail-price" id="detailPrice"></p>
-      <p class="detail-desc" id="detailDesc"></p>
-      <button class="detail-order" id="detailAdd" type="button">Agregar al carrito <span aria-hidden="true">+</span></button>
+    <div class="detail-toolbar">
+      <button class="detail-back" id="closeDetail" type="button" aria-label="Volver al menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m14 6-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p id="detailCategory"></p>
+    </div>
+    <div class="detail-scroll" id="detailContent">
+      <div class="detail-visual" id="detailVisual"></div>
+      <div class="detail-navigation" id="detailNavigation">
+        <button class="detail-nav" id="previousDetail" type="button" aria-label="Platillo anterior">‹</button>
+        <p class="detail-counter" id="detailCounter" aria-live="polite" aria-atomic="true"></p>
+        <button class="detail-nav" id="nextDetail" type="button" aria-label="Platillo siguiente">›</button>
+      </div>
+      <div class="detail-copy">
+        <span class="item-tag" id="detailTag" hidden></span>
+        <h2 id="detailName"></h2>
+        <p class="detail-desc" id="detailDesc"></p>
+      </div>
+    </div>
+    <div class="detail-footer">
+      <div><p class="detail-price-label">Precio</p><p class="detail-price" id="detailPrice"></p></div>
+      <button class="detail-add" id="detailAdd" type="button">Agregar al carrito <span aria-hidden="true">+</span></button>
     </div>
   </dialog>
 

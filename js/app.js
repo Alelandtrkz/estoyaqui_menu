@@ -16,6 +16,8 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let categoryIndex = 0;
   let selectedItem;
+  let detailIndex = 0;
+  let swipeStart = null;
   let statusTimeout;
 
   function priceInCents(item) {
@@ -156,6 +158,7 @@
     image.alt = item.name;
     image.loading = className === "detail-visual" ? "eager" : "lazy";
     image.decoding = "async";
+    image.draggable = false;
     image.width = 600;
     image.height = 600;
     const placeholder = document.createElement("span");
@@ -172,6 +175,14 @@
   }
 
   function showDetail(item) {
+    detailIndex = menu[categoryIndex].items.indexOf(item);
+    renderDetail();
+    if (!dialog.open) dialog.showModal();
+  }
+
+  function renderDetail(direction = 0) {
+    const section = menu[categoryIndex];
+    const item = section.items[detailIndex];
     selectedItem = item;
     const visual = document.getElementById("detailVisual");
     const replacement = createPhoto(item, "detail-visual");
@@ -180,24 +191,43 @@
     document.getElementById("detailName").textContent = item.name;
     document.getElementById("detailPrice").textContent = `$${item.price}`;
     document.getElementById("detailDesc").textContent = item.description;
+    document.getElementById("detailDesc").hidden = !item.description;
+    document.getElementById("detailCategory").textContent = section.category;
+    document.getElementById("detailCounter").textContent = `${detailIndex + 1} / ${section.items.length}`;
+    document.getElementById("detailNavigation").hidden = section.items.length < 2;
     const tag = document.getElementById("detailTag");
     tag.textContent = item.tag || "";
     tag.hidden = !item.tag;
-    dialog.showModal();
+    const content = document.getElementById("detailContent");
+    content.scrollTop = 0;
+    if (direction && !reducedMotion.matches) {
+      content.getAnimations().forEach(animation => animation.cancel());
+      content.animate([
+        { opacity: .4, transform: `translateX(${direction * 18}px)` },
+        { opacity: 1, transform: "translateX(0)" }
+      ], { duration: 200, easing: "ease-out" });
+    }
+  }
+
+  function moveDetail(step) {
+    const length = menu[categoryIndex].items.length;
+    if (length < 2) return;
+    detailIndex = (detailIndex + step + length) % length;
+    renderDetail(step);
   }
 
   function createMenuItem(item) {
     const card = document.createElement("article");
     card.className = `menu-item${categoryIndex > 1 ? " menu-item--drink" : ""}`;
     card.append(createPhoto(item, "product-visual"));
-    const preview = document.createElement("button");
-    preview.type = "button";
-    preview.className = "item-preview";
-    preview.setAttribute("aria-label", `Ver foto de ${item.name}`);
-    preview.setAttribute("aria-haspopup", "dialog");
-    preview.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
-    preview.addEventListener("click", () => showDetail(item));
-    card.append(preview);
+    const open = document.createElement("button");
+    open.type = "button";
+    open.className = "item-open";
+    open.setAttribute("aria-label", `Ver ${item.name}`);
+    open.setAttribute("aria-haspopup", "dialog");
+    open.setAttribute("aria-controls", "productDialog");
+    open.addEventListener("click", () => showDetail(item));
+    card.append(open);
     if (item.tag) {
       const tag = document.createElement("span");
       tag.className = "item-tag";
@@ -267,6 +297,29 @@
     selectCategory(nextIndex, { focus: true });
   });
   document.getElementById("closeDetail").addEventListener("click", () => dialog.close());
+  document.getElementById("previousDetail").addEventListener("click", () => moveDetail(-1));
+  document.getElementById("nextDetail").addEventListener("click", () => moveDetail(1));
+  dialog.addEventListener("keydown", event => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    moveDetail(event.key === "ArrowRight" ? 1 : -1);
+  });
+  const detailContent = document.getElementById("detailContent");
+  detailContent.addEventListener("pointerdown", event => {
+    if (!event.isPrimary || event.button !== 0 || event.target.closest("button, a")) return;
+    swipeStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    detailContent.setPointerCapture(event.pointerId);
+  });
+  detailContent.addEventListener("pointerup", event => {
+    if (!swipeStart || swipeStart.id !== event.pointerId) return;
+    const dx = event.clientX - swipeStart.x;
+    const dy = event.clientY - swipeStart.y;
+    swipeStart = null;
+    // Mantener el desplazamiento vertical y cambiar solo con un gesto horizontal claro.
+    if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.3) moveDetail(dx < 0 ? 1 : -1);
+  });
+  detailContent.addEventListener("pointercancel", () => { swipeStart = null; });
+  dialog.addEventListener("close", () => { swipeStart = null; });
   document.getElementById("detailAdd").addEventListener("click", () => {
     addToCart(selectedItem);
     dialog.close();

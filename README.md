@@ -116,7 +116,7 @@ Las fotografías reemplazadas pueden conservarse en `img-source/archive/`; el co
 
 ## Editar el menú
 
-El botón **+** de cada tarjeta agrega el producto al carrito. El botón con el ojo abre la fotografía y los detalles. La bolsa junto a las categorías muestra la cantidad total de unidades y permite cambiar cantidades, quitar productos y abrir WhatsApp con el pedido completo (cantidades, precios, subtotales y total). El cliente confirma el envío del mensaje en WhatsApp. El pedido se conserva en el mismo navegador al recargar la página, cuando el almacenamiento local está disponible.
+El botón **+** de cada tarjeta agrega el producto al carrito. Tocar cualquier otra parte de la tarjeta abre la fotografía y los detalles, con un botón compacto para agregar al carrito junto al precio. Dentro del detalle puedes deslizar a izquierda o derecha, usar las flechas o el teclado para recorrer los productos de la misma categoría. La bolsa junto a las categorías muestra la cantidad total de unidades y permite cambiar cantidades, quitar productos y abrir WhatsApp con el pedido completo (cantidades, precios, subtotales y total). El cliente confirma el envío del mensaje en WhatsApp. El pedido se conserva en el mismo navegador al recargar la página, cuando el almacenamiento local está disponible.
 
 Modifica `js/menu-data.js`. Cada producto usa esta estructura:
 
