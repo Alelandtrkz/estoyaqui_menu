@@ -32,7 +32,9 @@ El comando corrige la orientación, elimina metadatos y convierte las fotos a We
 
 También reconoce `carne a la plancha.png` y `pollo a la plancha.png`, que actualizan `carne-plancha.webp` y `pollo-plancha.webp` sin cambiar las referencias del menú ni del carrito.
 
-Para las tarjetas de comida, usa fotos cenitales (desde arriba), con el plato centrado y margen alrededor. Un PNG con fondo transparente permite que el plato destaque sobre la tarjeta. Las fotos actuales son provisionales: el diseño no cambia el ángulo de la fotografía. Las bebidas conservan un marco de esquinas redondeadas.
+Para las tarjetas de comida, usa fotos cenitales (desde arriba), con el plato centrado y margen alrededor. Un PNG con fondo transparente permite que el plato destaque sobre la tarjeta. Las fotos actuales son provisionales: el diseño no cambia el ángulo de la fotografía. Las bebidas usan un recorte circular que llena el marco, con borde claro y sombra, sobresaliendo de la tarjeta igual que los platos.
+
+Las fotos se conservan completas para el detalle. En las tarjetas de bebidas puedes ajustar el centro del recorte con el campo opcional `imagePosition` de cada producto, por ejemplo `"25% 50%"` para favorecer el lado izquierdo de la fotografía.
 
 Si existe el mismo nombre normalizado en ambas carpetas, se usa el original de `img-source/`.
 
@@ -59,6 +61,7 @@ Las fotografías reemplazadas pueden conservarse en `img-source/archive/`; el co
 - `napolitana.webp`
 - `pho-bo.webp`
 - `papas-fritas.webp`
+- `salchipapa.webp`
 
 ### Cócteles
 

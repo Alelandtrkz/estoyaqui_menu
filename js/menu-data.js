@@ -63,6 +63,13 @@ window.MENU_DATA = [
         price: "1,50",
         description: "400 gramos de papas",
         image: "papas-fritas.webp"
+      },
+      {
+        name: "Salchipapa",
+        price: "3,00",
+        description: "Papas fritas · salchicha",
+        tag: "Nuevo",
+        image: "salchipapa.webp"
       }
     ]
   },
@@ -91,7 +98,8 @@ window.MENU_DATA = [
         name: "Jagerbomb",
         price: "9",
         description: "Jägermeister · Red Bull",
-        image: "jagerbomb.webp"
+        image: "jagerbomb.webp",
+        imagePosition: "25% 50%"
       },
       {
         name: "Blue Margarita",
@@ -133,7 +141,8 @@ window.MENU_DATA = [
         name: "Mojito",
         price: "3,50",
         description: "Ron · limón · hierbabuena",
-        image: "mojito.webp"
+        image: "mojito.webp",
+        imagePosition: "25% 50%"
       }
     ]
   },
@@ -144,37 +153,43 @@ window.MENU_DATA = [
         name: "Shot de Jack Honey",
         price: "5",
         description: "Whisky Jack Honey",
-        image: "shot-jack-honey.webp"
+        image: "shot-jack-honey.webp",
+        imagePosition: "65% 50%"
       },
       {
         name: "Shot de Jack Daniel's Old No. 7",
         price: "5",
         description: "Whisky Jack Daniel's Old No. 7",
-        image: "shot-jack-daniels.webp"
+        image: "shot-jack-daniels.webp",
+        imagePosition: "65% 50%"
       },
       {
         name: "Shot de Johnnie Walker Red",
         price: "4",
         description: "Whisky Johnnie Walker Red",
-        image: "shot-jw-red.webp"
+        image: "shot-jw-red.webp",
+        imagePosition: "65% 50%"
       },
       {
         name: "Shot de Jägermeister",
         price: "3,50",
         description: "Jägermeister",
-        image: "shot-jager.webp"
+        image: "shot-jager.webp",
+        imagePosition: "65% 50%"
       },
       {
         name: "Shot Rojo",
         price: "3,50",
         description: "Tequila · granadina · limón",
-        image: "shot-rojo.webp"
+        image: "shot-rojo.webp",
+        imagePosition: "70% 50%"
       },
       {
         name: "Shot Azul",
         price: "3,50",
         description: "Tequila · blue curaçao · limón",
-        image: "shot-azul.webp"
+        image: "shot-azul.webp",
+        imagePosition: "70% 50%"
       },
       {
         name: "Shot de Tequila",
@@ -186,7 +201,8 @@ window.MENU_DATA = [
         name: "Shot de Whisky Passport",
         price: "3",
         description: "Whisky Passport",
-        image: "shot-passport.webp"
+        image: "shot-passport.webp",
+        imagePosition: "65% 50%"
       }
     ]
   },
@@ -256,7 +272,8 @@ window.MENU_DATA = [
         name: "Coca-Cola Cherry simple",
         price: "2",
         description: "Coca-Cola · granadina · hielo",
-        image: "coca-cherry.webp"
+        image: "coca-cherry.webp",
+        imagePosition: "20% 50%"
       },
       {
         name: "Coca-Cola lata",

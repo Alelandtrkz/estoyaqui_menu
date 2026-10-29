@@ -155,6 +155,7 @@
   function createPhoto(item, className) {
     const visual = document.createElement("div");
     visual.className = className;
+    if (item.imagePosition) visual.style.setProperty("--image-position", item.imagePosition);
     const image = document.createElement("img");
     image.alt = item.name;
     image.loading = className === "detail-visual" ? "eager" : "lazy";
