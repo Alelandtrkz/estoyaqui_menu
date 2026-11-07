@@ -69,6 +69,14 @@ window.MENU_DATA = [
     category: "Entradas",
     items: [
       {
+        name: "Gyozas en miel de naranja",
+        price: null,
+        comingSoon: true,
+        description: "Gyozas rellenas de cerdo con vegetales · ensalada · salsa de soja",
+        tag: "Nuevo",
+        image: "gyozas-miel-de-naranja.webp"
+      },
+      {
         name: "Papas fritas",
         price: "1,50",
         description: "400 gramos de papas",
