@@ -61,6 +61,7 @@ Las fotografías reemplazadas pueden conservarse en `img-source/archive/`; el co
 - `ramen.webp`
 - `tacos.webp`
 - `napolitana.webp`
+- `pollo-a-la-napolitana.webp`
 - `pho-bo.webp`
 - `papas-fritas.webp`
 - `salchipapa.webp`
