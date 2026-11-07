@@ -48,7 +48,7 @@ window.MENU_DATA = [
         image: "napolitana.webp"
       },
       {
-        name: "Pollo a la napolitana",
+        name: "Pollo holandés",
         price: null,
         comingSoon: true,
         description: "Ensalada · pollo relleno · salsa holandesa · puré de papa",
