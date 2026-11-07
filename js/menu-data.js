@@ -34,6 +34,14 @@ window.MENU_DATA = [
         image: "ramen.webp"
       },
       {
+        name: "Gyozas en miel de naranja",
+        price: null,
+        comingSoon: true,
+        description: "Gyozas rellenas de vegetales con cerdo · salsa de anguila · ensalada · miel de naranja · aceite de perejil · aceite de sésamo",
+        tag: "Nuevo",
+        image: "gyozas-miel-de-naranja.webp"
+      },
+      {
         name: "Tacos de pollo",
         price: "6,00",
         description: "Sofrito de pollo desmenuzado · salsa ahumada · tortillas",
@@ -68,14 +76,6 @@ window.MENU_DATA = [
   {
     category: "Entradas",
     items: [
-      {
-        name: "Gyozas en miel de naranja",
-        price: null,
-        comingSoon: true,
-        description: "Gyozas rellenas de cerdo con vegetales · ensalada · salsa de soja",
-        tag: "Nuevo",
-        image: "gyozas-miel-de-naranja.webp"
-      },
       {
         name: "Papas fritas",
         price: "1,50",

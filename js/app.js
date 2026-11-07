@@ -179,7 +179,8 @@
       image.hidden = true;
       image.removeAttribute("src");
     }, { once: true });
-    image.src = `img/${encodeURIComponent(item.image)}?v=20261028-photos-v2`;
+    const imageVersion = item.image === "gyozas-miel-de-naranja.webp" ? "20261107-gyozas-foto-nueva" : "20261028-photos-v2";
+    image.src = `img/${encodeURIComponent(item.image)}?v=${imageVersion}`;
     visual.append(image, placeholder);
     return visual;
   }
