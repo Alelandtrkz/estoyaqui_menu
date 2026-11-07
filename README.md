@@ -66,6 +66,7 @@ Las fotografías reemplazadas pueden conservarse en `img-source/archive/`; el co
 - `papas-fritas.webp`
 - `salchipapa.webp`
 - `gyozas-miel-de-naranja.webp`
+- `gyozas-miel-de-naranja-plato-fuerte.webp`
 
 ### Cócteles
 

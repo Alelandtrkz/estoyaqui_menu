@@ -63,7 +63,7 @@
       return;
     }
     changeQuantity(item.image, 1);
-    announce(`${item.name} agregado al carrito`);
+    announce(`${item.orderName || item.name} agregado al carrito`);
   }
 
   function quantityButton(label, symbol, action) {
@@ -89,11 +89,12 @@
     const lines = ["Hola, quiero hacer este pedido en Estoy Aquí:", ""];
     for (const [id, quantity] of cart) {
       const item = products.get(id);
+      const orderName = item.orderName || item.name;
       const unitPrice = priceInCents(item);
       const subtotal = unitPrice * quantity;
       total += subtotal;
       count += quantity;
-      lines.push(`${quantity} × ${item.name} — ${money(unitPrice)} c/u — ${money(subtotal)}`);
+      lines.push(`${quantity} × ${orderName} — ${money(unitPrice)} c/u — ${money(subtotal)}`);
       const row = document.createElement("li");
       row.className = "cart-row";
       row.dataset.id = id;
@@ -101,25 +102,25 @@
       const copy = document.createElement("div");
       copy.className = "cart-row-copy";
       const name = document.createElement("h3");
-      name.textContent = item.name;
+      name.textContent = orderName;
       const price = document.createElement("p");
       price.className = "cart-unit-price";
       price.textContent = `${money(unitPrice)} c/u`;
       const controls = document.createElement("div");
       controls.className = "quantity-controls";
-      const decrease = quantityButton(`Reducir cantidad de ${item.name}`, "−", () => changeQuantity(id, -1));
+      const decrease = quantityButton(`Reducir cantidad de ${orderName}`, "−", () => changeQuantity(id, -1));
       decrease.dataset.action = "decrease";
       const amount = document.createElement("span");
       amount.className = "quantity-value";
       amount.textContent = quantity;
       amount.setAttribute("aria-label", `${quantity} unidades`);
-      const increase = quantityButton(`Aumentar cantidad de ${item.name}`, "+", () => changeQuantity(id, 1));
+      const increase = quantityButton(`Aumentar cantidad de ${orderName}`, "+", () => changeQuantity(id, 1));
       increase.dataset.action = "increase";
-      const remove = quantityButton(`Quitar ${item.name} del carrito`, "Quitar", () => {
+      const remove = quantityButton(`Quitar ${orderName} del carrito`, "Quitar", () => {
         cart.delete(id);
         saveCart();
         renderCart();
-        announce(`${item.name} eliminado del carrito`);
+        announce(`${orderName} eliminado del carrito`);
       });
       remove.className = "remove-item";
       remove.dataset.action = "remove";
@@ -179,7 +180,8 @@
       image.hidden = true;
       image.removeAttribute("src");
     }, { once: true });
-    const imageVersion = item.image === "gyozas-miel-de-naranja.webp" ? "20261107-gyozas-foto-nueva" : "20261028-photos-v2";
+    const imageVersion = ["gyozas-miel-de-naranja.webp", "gyozas-miel-de-naranja-plato-fuerte.webp"].includes(item.image)
+      ? "20261107-gyozas-dos-presentaciones" : "20261028-photos-v2";
     image.src = `img/${encodeURIComponent(item.image)}?v=${imageVersion}`;
     visual.append(image, placeholder);
     return visual;
