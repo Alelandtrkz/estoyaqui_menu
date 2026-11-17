@@ -21,15 +21,15 @@
   let swipeStart = null;
   let statusTimeout;
 
-  const isOrderable = item => Boolean(item && !item.comingSoon && typeof item.price === "string");
-  const displayPrice = item => isOrderable(item) ? `$${item.price}` : "Muy pronto";
+  const isOrderable = item => Boolean(item && !item.comingSoon && !item.soldOut && typeof item.price === "string");
+  const displayPrice = item => item.soldOut ? "Agotada" : isOrderable(item) ? item.price : "Muy pronto";
 
   function priceInCents(item) {
     const [whole, fraction = ""] = item.price.replace(",", ".").split(".");
     return Number(whole) * 100 + Number(fraction.padEnd(2, "0"));
   }
 
-  const money = cents => `$${(cents / 100).toFixed(2).replace(".", ",")}`;
+  const money = cents => (cents / 100).toFixed(2).replace(".", ",");
 
   function announce(message) {
     const status = document.getElementById("cartStatus");
@@ -181,7 +181,9 @@
       image.removeAttribute("src");
     }, { once: true });
     const imageVersion = ["gyozas-miel-de-naranja.webp", "gyozas-miel-de-naranja-plato-fuerte.webp"].includes(item.image)
-      ? "20261107-gyozas-dos-presentaciones" : "20261028-photos-v2";
+      ? "20261107-gyozas-dos-presentaciones"
+      : ["jarra-frutos-rojos.webp", "jarra-mango.webp", "jarra-maracuya.webp"].includes(item.image)
+        ? "20261117-jarras-nuevas" : "20261028-photos-v2";
     image.src = `img/${encodeURIComponent(item.image)}?v=${imageVersion}`;
     visual.append(image, placeholder);
     return visual;

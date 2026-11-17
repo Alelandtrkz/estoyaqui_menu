@@ -120,6 +120,9 @@ Las fotografías reemplazadas pueden conservarse en `img-source/archive/`; el co
 - `power-mini.webp`
 - `agua.webp`
 - `jarra-limon.webp`
+- `jarra-frutos-rojos.webp`
+- `jarra-mango.webp`
+- `jarra-maracuya.webp`
 - `jarra-naranja.webp`
 - `jarra-coca-cola.webp`
 - `jarra-sprite.webp`

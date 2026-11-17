@@ -36,8 +36,7 @@ window.MENU_DATA = [
       {
         name: "Gyozas en miel de naranja",
         orderName: "Gyozas en miel de naranja (Plato fuerte)",
-        price: null,
-        comingSoon: true,
+        price: "7,85",
         description: "Gyozas rellenas de vegetales con cerdo · salsa de anguila · ensalada · miel de naranja · aceite de perejil · aceite de sésamo",
         tag: "Nuevo",
         image: "gyozas-miel-de-naranja-plato-fuerte.webp"
@@ -50,24 +49,21 @@ window.MENU_DATA = [
       },
       {
         name: "Napolitana",
-        price: null,
-        comingSoon: true,
+        price: "8,20",
         description: "Milanesa de carne a doble cocción · salsa napolitana · papas fritas · ensalada",
         tag: "Nuevo",
         image: "napolitana.webp"
       },
       {
         name: "Pollo holandés",
-        price: null,
-        comingSoon: true,
+        price: "8,15",
         description: "Ensalada · pollo relleno · salsa holandesa · puré de papa",
         tag: "Nuevo",
         image: "pollo-a-la-napolitana.webp"
       },
       {
         name: "Phở Bò",
-        price: null,
-        comingSoon: true,
+        price: "11,25",
         description: "Fideos de arroz · carne · vegetales",
         tag: "Por reserva",
         image: "pho-bo.webp"
@@ -80,8 +76,7 @@ window.MENU_DATA = [
       {
         name: "Gyozas en miel de naranja",
         orderName: "Gyozas en miel de naranja (Entrada)",
-        price: null,
-        comingSoon: true,
+        price: "7,85",
         description: "Gyozas rellenas de cerdo con vegetales · ensalada · salsa de soja",
         tag: "Nuevo",
         image: "gyozas-miel-de-naranja.webp"
@@ -365,8 +360,33 @@ window.MENU_DATA = [
       {
         name: "Jarra de limón",
         price: "3,25",
+        soldOut: true,
         description: "Jugo de limón",
         image: "jarra-limon.webp"
+      },
+      {
+        name: "Jarra de frutos rojos",
+        price: null,
+        comingSoon: true,
+        description: "Jugo de frutos rojos",
+        tag: "Nuevo",
+        image: "jarra-frutos-rojos.webp"
+      },
+      {
+        name: "Jarra de mango",
+        price: null,
+        comingSoon: true,
+        description: "Jugo de mango",
+        tag: "Nuevo",
+        image: "jarra-mango.webp"
+      },
+      {
+        name: "Jarra de maracuyá",
+        price: null,
+        comingSoon: true,
+        description: "Jugo de maracuyá",
+        tag: "Nuevo",
+        image: "jarra-maracuya.webp"
       },
       {
         name: "Jarra de naranja",
