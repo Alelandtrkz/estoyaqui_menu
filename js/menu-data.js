@@ -3,51 +3,6 @@ window.MENU_DATA = [
     category: "Platos fuertes",
     items: [
       {
-        name: "Carne al grill",
-        price: "6,50",
-        description: "Filete de punta cadera 400 g · papas fritas 400 g · salsas de la casa · ensalada",
-        image: "carne-al-grill.webp"
-      },
-      {
-        name: "Pollo al grill",
-        price: "5,50",
-        description: "Pechuga de pollo 400 g · papas fritas 400 g · salsas de la casa · ensalada",
-        image: "pollo-grill.webp"
-      },
-      {
-        name: "Carne a la plancha",
-        price: "6,50",
-        description: "Filete de punta cadera 400 g · papas fritas 400 g · salsas de la casa · ensalada",
-        image: "carne-plancha.webp"
-      },
-      {
-        name: "Pollo a la plancha",
-        price: "5,50",
-        description: "Pechuga de pollo 400 g · papas fritas 400 g · salsas de la casa · ensalada",
-        image: "pollo-plancha.webp"
-      },
-      {
-        name: "Ramen",
-        price: "6,50",
-        description: "Pollo · fideos ramen · huevo cocido · champiñones",
-        tag: "Por reserva",
-        image: "ramen.webp"
-      },
-      {
-        name: "Gyozas en miel de naranja",
-        orderName: "Gyozas en miel de naranja (Plato fuerte)",
-        price: "7,85",
-        description: "Gyozas rellenas de vegetales con cerdo · salsa de anguila · ensalada · miel de naranja · aceite de perejil · aceite de sésamo",
-        tag: "Nuevo",
-        image: "gyozas-miel-de-naranja-plato-fuerte.webp"
-      },
-      {
-        name: "Tacos de pollo",
-        price: "6,00",
-        description: "Sofrito de pollo desmenuzado · salsa ahumada · tortillas",
-        image: "tacos.webp"
-      },
-      {
         name: "Napolitana",
         price: "8,20",
         description: "Milanesa de carne a doble cocción · salsa napolitana · papas fritas · ensalada",
@@ -62,11 +17,56 @@ window.MENU_DATA = [
         image: "pollo-a-la-napolitana.webp"
       },
       {
+        name: "Carne al grill",
+        price: "6,50",
+        description: "Filete de punta cadera 400 g · papas fritas 400 g · salsas de la casa · ensalada",
+        image: "carne-al-grill.webp"
+      },
+      {
+        name: "Carne a la plancha",
+        price: "6,50",
+        description: "Filete de punta cadera 400 g · papas fritas 400 g · salsas de la casa · ensalada",
+        image: "carne-plancha.webp"
+      },
+      {
+        name: "Pollo al grill",
+        price: "5,50",
+        description: "Pechuga de pollo 400 g · papas fritas 400 g · salsas de la casa · ensalada",
+        image: "pollo-grill.webp"
+      },
+      {
+        name: "Pollo a la plancha",
+        price: "5,50",
+        description: "Pechuga de pollo 400 g · papas fritas 400 g · salsas de la casa · ensalada",
+        image: "pollo-plancha.webp"
+      },
+      {
+        name: "Tacos de pollo",
+        price: "6,00",
+        description: "Sofrito de pollo desmenuzado · salsa ahumada · tortillas",
+        image: "tacos.webp"
+      },
+      {
         name: "Phở Bò",
         price: "11,25",
         description: "Fideos de arroz · carne · vegetales",
         tag: "Por reserva",
         image: "pho-bo.webp"
+      },
+      {
+        name: "Ramen",
+        price: "6,50",
+        description: "Pollo · fideos ramen · huevo cocido · champiñones",
+        tag: "Por reserva",
+        image: "ramen.webp"
+      },
+      {
+        name: "Gyozas en miel de naranja",
+        orderName: "Gyozas en miel de naranja (Plato fuerte)",
+        price: "8,40",
+        description: "Gyozas rellenas de vegetales con cerdo · salsa de anguila · ensalada · miel de naranja · aceite de perejil · aceite de sésamo",
+        tag: "Nuevo",
+        image: "gyozas-miel-de-naranja-plato-fuerte.webp"
       }
     ]
   },
