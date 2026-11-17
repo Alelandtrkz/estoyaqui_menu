@@ -366,24 +366,21 @@ window.MENU_DATA = [
       },
       {
         name: "Jarra de frutos rojos",
-        price: null,
-        comingSoon: true,
+        price: "3,25",
         description: "Jugo de frutos rojos",
         tag: "Nuevo",
         image: "jarra-frutos-rojos.webp"
       },
       {
         name: "Jarra de mango",
-        price: null,
-        comingSoon: true,
+        price: "3,25",
         description: "Jugo de mango",
         tag: "Nuevo",
         image: "jarra-mango.webp"
       },
       {
         name: "Jarra de maracuyá",
-        price: null,
-        comingSoon: true,
+        price: "3,25",
         description: "Jugo de maracuyá",
         tag: "Nuevo",
         image: "jarra-maracuya.webp"
